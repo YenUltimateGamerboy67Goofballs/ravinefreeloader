@@ -133,7 +133,6 @@ local function CreateCard(name, desc, icon, placeId, scriptUrl)
     Card.BackgroundColor3 = Secondary
     Card.BorderSizePixel = 0
     Instance.new("UICorner", Card).CornerRadius = UDim.new(0, 8)
-    
     local Icon = Instance.new("ImageLabel", Card)
     Icon.Size = UDim2.new(0, 45, 0, 45)
     Icon.Position = UDim2.new(0, 12, 0.5, -22)
@@ -141,7 +140,6 @@ local function CreateCard(name, desc, icon, placeId, scriptUrl)
     Icon.Image = icon
     Icon.ScaleType = Enum.ScaleType.Fit
     Instance.new("UICorner", Icon).CornerRadius = UDim.new(0, 6)
-    
     local NameLabel = Instance.new("TextLabel", Card)
     NameLabel.Size = UDim2.new(1, -160, 0, 25)
     NameLabel.Position = UDim2.new(0, 70, 0, 10)
@@ -151,7 +149,6 @@ local function CreateCard(name, desc, icon, placeId, scriptUrl)
     NameLabel.TextSize = 15
     NameLabel.Font = Enum.Font.GothamBold
     NameLabel.TextXAlignment = Enum.TextXAlignment.Left
-    
     local DescLabel = Instance.new("TextLabel", Card)
     DescLabel.Size = UDim2.new(1, -160, 0, 20)
     DescLabel.Position = UDim2.new(0, 70, 0, 35)
@@ -161,7 +158,6 @@ local function CreateCard(name, desc, icon, placeId, scriptUrl)
     DescLabel.TextSize = 11
     DescLabel.Font = Enum.Font.Gotham
     DescLabel.TextXAlignment = Enum.TextXAlignment.Left
-    
     local LoadBtn = Instance.new("TextButton", Card)
     LoadBtn.Size = UDim2.new(0, 70, 0, 28)
     LoadBtn.Position = UDim2.new(1, -85, 0.5, -14)
@@ -171,7 +167,6 @@ local function CreateCard(name, desc, icon, placeId, scriptUrl)
     LoadBtn.TextSize = PlaceId == placeId and 12 or 9
     LoadBtn.Font = Enum.Font.GothamBold
     Instance.new("UICorner", LoadBtn).CornerRadius = UDim.new(0, 5)
-    
     if PlaceId == placeId then
         LoadBtn.MouseEnter:Connect(function() TweenService:Create(LoadBtn, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(200, 0, 0)}):Play() end)
         LoadBtn.MouseLeave:Connect(function() TweenService:Create(LoadBtn, TweenInfo.new(0.2), {BackgroundColor3 = Accent}):Play() end)
@@ -180,33 +175,18 @@ local function CreateCard(name, desc, icon, placeId, scriptUrl)
             loadstring(game:HttpGet(scriptUrl))()
         end)
     end
-    
     ScriptsContainer.CanvasSize = UDim2.new(0, 0, 0, ScriptList.AbsoluteContentSize.Y + 20)
 end
 
--- Scripts Liste
 local Scripts = {
-    {
-        Name = "Chicken Farm",
-        Description = "Auto Collect, Deposit, Upgrade, Merge, Lucky Blocks",
-        Icon = "https://tr.rbxcdn.com/180DAY-2bcc5a3b5a0a7b9a55f174d41fccda6f/768/432/Image/Webp/noFilter",
-        PlaceId = 137233438285284,
-        ScriptUrl = "https://api.jnkie.com/api/v1/luascripts/public/b99290ab5a4cde0b21f5e8ae933b738230a72028938eca6d4555b13b34bc0fe8/download"
-    },
-    {
-        Name = "Ravine FIAS",
-        Description = "Combat, Farming, ESP, Teleports, Visuals & More",
-        Icon = "rbxassetid://128553373538203",
-        PlaceId = 17698425045,
-        ScriptUrl = "https://api.jnkie.com/api/v1/luascripts/public/6a738d69bfbf6714714cc37a11021c149c512e93db82b9c422ca99e0b686deb5/download"
-    },
+    {Name = "Chicken Farm", Description = "Auto Collect, Deposit, Upgrade, Merge, Lucky Blocks", Icon = "https://tr.rbxcdn.com/180DAY-2bcc5a3b5a0a7b9a55f174d41fccda6f/768/432/Image/Webp/noFilter", PlaceId = 137233438285284, ScriptUrl = "https://api.jnkie.com/api/v1/luascripts/public/b99290ab5a4cde0b21f5e8ae933b738230a72028938eca6d4555b13b34bc0fe8/download"},
+    {Name = "Ravine FIAS", Description = "Combat, Farming, ESP, Teleports, Visuals & More", Icon = "rbxassetid://128553373538203", PlaceId = 17698425045, ScriptUrl = "https://api.jnkie.com/api/v1/luascripts/public/6a738d69bfbf6714714cc37a11021c149c512e93db82b9c422ca99e0b686deb5/download"},
 }
 
 for _, scriptData in ipairs(Scripts) do
     CreateCard(scriptData.Name, scriptData.Description, scriptData.Icon, scriptData.PlaceId, scriptData.ScriptUrl)
 end
 
--- Dragging
 local dragging, dragStart, startPos
 Header.InputBegan:Connect(function(input)
     if input.UserInputType == Enum.UserInputType.MouseButton1 then
