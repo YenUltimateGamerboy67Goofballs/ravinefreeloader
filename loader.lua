@@ -1,8 +1,8 @@
--- Ravine Scripts Loader mit Junkie Key System
+-- Ravine Scripts Loader mit Junkie Key System + Multi Scripts
 local Junkie = loadstring(game:HttpGet("https://jnkie.com/sdk/library.lua"))()
-Junkie.service = "keyless"
-Junkie.identifier = "43924"
-Junkie.provider = "keyless"
+Junkie.service = "Ravine Scripts"
+Junkie.identifier = "12345"
+Junkie.provider = "Mixed"
 
 local Players = game:GetService("Players")
 local TweenService = game:GetService("TweenService")
@@ -19,31 +19,24 @@ local attempts = 0
 local function validateKey()
     while not validatedKey and attempts < maxAttempts do
         local link = Junkie.get_key_link()
-        if link and setclipboard then
-            setclipboard(link)
-        end
+        if link and setclipboard then setclipboard(link) end
         
-        -- Key Input UI
         local keyInput = showKeyInputUI()
-        
         if keyInput and #keyInput > 0 then
             attempts = attempts + 1
             local validation = Junkie.check_key(keyInput)
-            
             if validation.valid then
                 validatedKey = keyInput
                 getgenv().SCRIPT_KEY = keyInput
                 return true
             end
         end
-        
         if attempts >= maxAttempts then return false end
         task.wait(1)
     end
     return false
 end
 
--- Key Input UI
 function showKeyInputUI()
     local keyValue = nil
     local inputGui = Instance.new("ScreenGui")
@@ -60,37 +53,33 @@ function showKeyInputUI()
     bg.Parent = inputGui
     Instance.new("UICorner", bg).CornerRadius = UDim.new(0, 10)
     
-    local title = Instance.new("TextLabel")
+    local title = Instance.new("TextLabel", bg)
     title.Size = UDim2.new(1, 0, 0, 35)
     title.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
     title.Text = "Enter Key - Ravine Scripts"
     title.TextColor3 = Color3.fromRGB(255, 255, 255)
     title.Font = Enum.Font.GothamBold
     title.TextSize = 16
-    title.Parent = bg
     Instance.new("UICorner", title).CornerRadius = UDim.new(0, 10)
     
-    local fix = Instance.new("Frame")
+    local fix = Instance.new("Frame", title)
     fix.Size = UDim2.new(1, 0, 0, 10)
     fix.Position = UDim2.new(0, 0, 1, -10)
     fix.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
     fix.BorderSizePixel = 0
-    fix.Parent = title
     
-    local inputBox = Instance.new("TextBox")
+    local inputBox = Instance.new("TextBox", bg)
     inputBox.Size = UDim2.new(1, -40, 0, 35)
     inputBox.Position = UDim2.new(0, 20, 0, 55)
     inputBox.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-    inputBox.Text = ""
     inputBox.PlaceholderText = "Paste your key here..."
     inputBox.PlaceholderColor3 = Color3.fromRGB(100, 100, 100)
     inputBox.TextColor3 = Color3.fromRGB(255, 255, 255)
     inputBox.Font = Enum.Font.Gotham
     inputBox.TextSize = 14
-    inputBox.Parent = bg
     Instance.new("UICorner", inputBox).CornerRadius = UDim.new(0, 6)
     
-    local submitBtn = Instance.new("TextButton")
+    local submitBtn = Instance.new("TextButton", bg)
     submitBtn.Size = UDim2.new(1, -40, 0, 35)
     submitBtn.Position = UDim2.new(0, 20, 0, 105)
     submitBtn.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
@@ -98,18 +87,7 @@ function showKeyInputUI()
     submitBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
     submitBtn.Font = Enum.Font.GothamBold
     submitBtn.TextSize = 14
-    submitBtn.Parent = bg
     Instance.new("UICorner", submitBtn).CornerRadius = UDim.new(0, 6)
-    
-    local statusLabel = Instance.new("TextLabel")
-    statusLabel.Size = UDim2.new(1, -40, 0, 20)
-    statusLabel.Position = UDim2.new(0, 20, 0, 145)
-    statusLabel.BackgroundTransparency = 1
-    statusLabel.Text = "Key link copied to clipboard!"
-    statusLabel.TextColor3 = Color3.fromRGB(150, 150, 150)
-    statusLabel.Font = Enum.Font.Gotham
-    statusLabel.TextSize = 11
-    statusLabel.Parent = bg
     
     submitBtn.MouseButton1Click:Connect(function()
         keyValue = inputBox.Text
@@ -121,13 +99,12 @@ function showKeyInputUI()
     return keyValue
 end
 
--- Validate first
 if not validateKey() then
-    player:Kick("Invalid key or too many attempts")
+    player:Kick("Invalid key")
     return
 end
 
---  LOADER UI 
+-- ==================== LOADER UI ====================
 local RavineLoader = Instance.new("ScreenGui")
 RavineLoader.Name = "RavineLoader"
 RavineLoader.ResetOnSpawn = false
@@ -154,8 +131,8 @@ Header.Size = UDim2.new(1, 0, 0, 140)
 Header.BackgroundColor3 = Secondary
 Header.BorderSizePixel = 0
 Header.Parent = Main
-local HeaderCorner = Instance.new("UICorner", Header)
-HeaderCorner.CornerRadius = UDim.new(0, 12)
+Instance.new("UICorner", Header).CornerRadius = UDim.new(0, 12)
+
 local HeaderFix = Instance.new("Frame", Header)
 HeaderFix.Size = UDim2.new(1, 0, 0, 12)
 HeaderFix.Position = UDim2.new(0, 0, 1, -12)
@@ -255,6 +232,7 @@ local function CreateCard(name, desc, icon, placeId, callback)
     Card.BackgroundColor3 = Secondary
     Card.BorderSizePixel = 0
     Instance.new("UICorner", Card).CornerRadius = UDim.new(0, 8)
+    
     local Icon = Instance.new("ImageLabel", Card)
     Icon.Size = UDim2.new(0, 45, 0, 45)
     Icon.Position = UDim2.new(0, 12, 0.5, -22)
@@ -262,6 +240,7 @@ local function CreateCard(name, desc, icon, placeId, callback)
     Icon.Image = icon
     Icon.ScaleType = Enum.ScaleType.Fit
     Instance.new("UICorner", Icon).CornerRadius = UDim.new(0, 6)
+    
     local NameLabel = Instance.new("TextLabel", Card)
     NameLabel.Size = UDim2.new(1, -160, 0, 25)
     NameLabel.Position = UDim2.new(0, 70, 0, 10)
@@ -271,6 +250,7 @@ local function CreateCard(name, desc, icon, placeId, callback)
     NameLabel.TextSize = 15
     NameLabel.Font = Enum.Font.GothamBold
     NameLabel.TextXAlignment = Enum.TextXAlignment.Left
+    
     local DescLabel = Instance.new("TextLabel", Card)
     DescLabel.Size = UDim2.new(1, -160, 0, 20)
     DescLabel.Position = UDim2.new(0, 70, 0, 35)
@@ -280,6 +260,7 @@ local function CreateCard(name, desc, icon, placeId, callback)
     DescLabel.TextSize = 11
     DescLabel.Font = Enum.Font.Gotham
     DescLabel.TextXAlignment = Enum.TextXAlignment.Left
+    
     local LoadBtn = Instance.new("TextButton", Card)
     LoadBtn.Size = UDim2.new(0, 70, 0, 28)
     LoadBtn.Position = UDim2.new(1, -85, 0.5, -14)
@@ -289,6 +270,7 @@ local function CreateCard(name, desc, icon, placeId, callback)
     LoadBtn.TextSize = PlaceId == placeId and 12 or 9
     LoadBtn.Font = Enum.Font.GothamBold
     Instance.new("UICorner", LoadBtn).CornerRadius = UDim.new(0, 5)
+    
     if PlaceId == placeId then
         LoadBtn.MouseEnter:Connect(function() TweenService:Create(LoadBtn, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(200, 0, 0)}):Play() end)
         LoadBtn.MouseLeave:Connect(function() TweenService:Create(LoadBtn, TweenInfo.new(0.2), {BackgroundColor3 = Accent}):Play() end)
@@ -297,5 +279,55 @@ local function CreateCard(name, desc, icon, placeId, callback)
             callback()
         end)
     end
+    
     ScriptsContainer.CanvasSize = UDim2.new(0, 0, 0, ScriptList.AbsoluteContentSize.Y + 20)
 end
+
+-- ==================== SCRIPTS ====================
+-- Jedes Script wird von einer SEPARATEN URL geladen
+-- So kannst du mehrere Scripts haben ohne dass die Datei zu gross wird
+
+local Scripts = {
+    {
+        Name = "Chicken Farm",
+        Description = "Auto Collect, Deposit, Upgrade, Merge, Lucky Blocks",
+        Icon = "https://tr.rbxcdn.com/180DAY-2bcc5a3b5a0a7b9a55f174d41fccda6f/768/432/Image/Webp/noFilter",
+        PlaceId = 137233438285284,
+        
+        ScriptUrl = "https://api.jnkie.com/api/v1/luascripts/public/b99290ab5a4cde0b21f5e8ae933b738230a72028938eca6d4555b13b34bc0fe8/download"
+    },
+    {
+        Name = "Ravine FIAS",
+        Description = "Combat, Farming, ESP, Teleports, Visuals & More",
+        Icon = "rbxassetid://128553373538203",
+        PlaceId = 17698425045,
+        
+        ScriptUrl = "https://api.jnkie.com/api/v1/luascripts/public/6a738d69bfbf6714714cc37a11021c149c512e93db82b9c422ca99e0b686deb5/download"
+    },
+}
+
+for _, scriptData in ipairs(Scripts) do
+    CreateCard(scriptData.Name, scriptData.Description, scriptData.Icon, scriptData.PlaceId, function()
+        loadstring(game:HttpGet(scriptData.ScriptUrl))()
+    end)
+end
+
+-- Dragging
+local dragging, dragStart, startPos
+Header.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        dragging = true; dragStart = input.Position; startPos = Main.Position
+    end
+end)
+UserInputService.InputChanged:Connect(function(input)
+    if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+        local delta = input.Position - dragStart
+        Main.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+    end
+end)
+UserInputService.InputEnded:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then dragging = false end
+end)
+UserInputService.InputBegan:Connect(function(input)
+    if input.KeyCode == Enum.KeyCode.RightShift then Main.Visible = not Main.Visible end
+end)
