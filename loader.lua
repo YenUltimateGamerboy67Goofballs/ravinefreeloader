@@ -649,7 +649,7 @@ if getgenv().SCRIPT_KEY and getgenv().SCRIPT_KEY ~= "" then
             Name = "Ravine Fight on A Baseplate",
             Description = "Kill Aura, Auto Weave, No Collide, Anti Shake, Move While Knocked",
             Icon = "https://tr.rbxcdn.com/180DAY-fb0455d36bd1cd15f946c57abb8f2c6d/256/256/Image/Webp/noFilter",
-            PlaceIds = {130960021905304},
+            PlaceIds = {130960021905304, 137378874406308},
             ScriptUrl = "https://api.jnkie.com/api/v1/luascripts/public/cffebf9fcf41cb050a6a9963ec213e7ae19527e1916f74442fa8678d991c465e/download"
         },
         {
