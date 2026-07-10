@@ -646,7 +646,14 @@ if getgenv().SCRIPT_KEY and getgenv().SCRIPT_KEY ~= "" then
             ScriptUrl = "https://api.jnkie.com/api/v1/luascripts/public/6a738d69bfbf6714714cc37a11021c149c512e93db82b9c422ca99e0b686deb5/download"
         },
         {
-            Name = "Chicken Farm",
+            Name = "Ravine Fight on A Baseplate",
+            Description = "Kill Aura, Auto Weave, No Collide, Anti Shake, Move While Knocked",
+            Icon = "https://tr.rbxcdn.com/180DAY-fb0455d36bd1cd15f946c57abb8f2c6d/256/256/Image/Webp/noFilter",
+            PlaceIds = {130960021905304},
+            ScriptUrl = "https://api.jnkie.com/api/v1/luascripts/public/cffebf9fcf41cb050a6a9963ec213e7ae19527e1916f74442fa8678d991c465e/download"
+        },
+        {
+            Name = "Ravine Chicken Farm",
             Description = "Auto Collect, Deposit, Upgrade, Merge, Lucky Blocks",
             Icon = "https://tr.rbxcdn.com/180DAY-fb0455d36bd1cd15f946c57abb8f2c6d/256/256/Image/Webp/noFilter",
             PlaceIds = {137233438285284},
