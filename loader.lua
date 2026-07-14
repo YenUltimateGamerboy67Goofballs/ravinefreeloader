@@ -579,7 +579,9 @@ if getgenv().SCRIPT_KEY and getgenv().SCRIPT_KEY ~= "" then
 
     local function CreateCard(name, desc, icon, placeIds, scriptUrl)
         local validPlace = false
-        if type(placeIds) == "table" then
+        if placeIds == "any" then
+            validPlace = true
+        elseif type(placeIds) == "table" then
             for _, id in ipairs(placeIds) do
                 if PlaceId == id then validPlace = true; break end
             end
@@ -641,21 +643,28 @@ if getgenv().SCRIPT_KEY and getgenv().SCRIPT_KEY ~= "" then
         {
             Name = "Ravine FIAS",
             Description = "Combat, Farming, Kill Aura, Teleports, & More",
-            Icon = "https://tr.rbxcdn.com/180DAY-7673b5e1c0a3a7b07c67aa457adf05ea/768/432/Image/Webp/noFilter",
+            Icon = "rbxassetid://128553373538203",
             PlaceIds = {17698425045, 86098085533596, 18248633989, 118758941554698},
             ScriptUrl = "https://api.jnkie.com/api/v1/luascripts/public/6a738d69bfbf6714714cc37a11021c149c512e93db82b9c422ca99e0b686deb5/download"
         },
         {
             Name = "Ravine Fight on A Baseplate",
             Description = "Kill Aura, Auto Weave, No Collide, Anti Shake, Move While Knocked",
-            Icon = "https://tr.rbxcdn.com/180DAY-fb0455d36bd1cd15f946c57abb8f2c6d/256/256/Image/Webp/noFilter",
+            Icon = "rbxassetid://128553373538203",
             PlaceIds = {130960021905304, 137378874406308},
             ScriptUrl = "https://api.jnkie.com/api/v1/luascripts/public/cffebf9fcf41cb050a6a9963ec213e7ae19527e1916f74442fa8678d991c465e/download"
+        },
+	    {
+            Name = "Ravine Rivals",
+            Description = "Aimbot, Silent Aim, ESP, Speed Boost, Fly",
+            Icon = "rbxassetid://128553373538203",
+            PlaceIds = "any",
+            ScriptUrl = "https://api.jnkie.com/api/v1/luascripts/public/3415417e9c64b305de708d3bdf8eff112790e2fd5ee6e7c16ea60d1a6b3a542c/download"
         },
         {
             Name = "Ravine Chicken Farm",
             Description = "Auto Collect, Deposit, Upgrade, Merge, Lucky Blocks",
-            Icon = "https://tr.rbxcdn.com/180DAY-fb0455d36bd1cd15f946c57abb8f2c6d/256/256/Image/Webp/noFilter",
+            Icon = "rbxassetid://128553373538203",
             PlaceIds = {137233438285284},
             ScriptUrl = "https://api.jnkie.com/api/v1/luascripts/public/b99290ab5a4cde0b21f5e8ae933b738230a72028938eca6d4555b13b34bc0fe8/download"
         },
