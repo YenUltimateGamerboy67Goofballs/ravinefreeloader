@@ -1,4 +1,4 @@
--- Ravine Scripts - FREE Loader
+
 local Junkie = loadstring(game:HttpGet("https://jnkie.com/sdk/library.lua"))()
 Junkie.service = "ravine"
 Junkie.identifier = "1064771"
@@ -282,7 +282,7 @@ local result = (function()
                 getKeyButton.Size = UDim2.new(0.48, 0, 1, 0)
                 getKeyButton.Position = UDim2.new(0, 0, 0, 0)
                 getKeyButton.BackgroundColor3 = Colors.background
-                getKeyButton.Text = "Get Key"
+                getKeyButton.Text = "Discord"
                 getKeyButton.TextColor3 = Color3.fromRGB(220, 220, 220)
                 getKeyButton.TextSize = 14
                 getKeyButton.Font = Enum.Font.GothamSemibold
@@ -339,13 +339,13 @@ local result = (function()
                     self.gui:Destroy()
                 end)
 
+               
                 getKeyButton.MouseButton1Click:Connect(function()
-                    local link = Junkie.get_key_link()
-                    if link and setclipboard then
-                        setclipboard(link)
-                        self:updateStatus("Link copied to clipboard!", Colors.success, 3)
+                    if DISCORD_LINK and setclipboard then
+                        setclipboard(DISCORD_LINK)
+                        self:updateStatus("Discord link copied! Join for key!", Colors.success, 3)
                     else
-                        self:updateStatus("Failed to get link", Colors.error, 3)
+                        self:updateStatus("Failed to copy link", Colors.error, 3)
                     end
                 end)
 
@@ -448,7 +448,7 @@ local result = (function()
     return getgenv().SCRIPT_KEY
 end)()
 
--- Free Loader UI
+
 if getgenv().SCRIPT_KEY and getgenv().SCRIPT_KEY ~= "" then
     local Players = game:GetService("Players")
     local TweenService = game:GetService("TweenService")
@@ -456,6 +456,8 @@ if getgenv().SCRIPT_KEY and getgenv().SCRIPT_KEY ~= "" then
     local CoreGui = game:GetService("CoreGui")
     local player = Players.LocalPlayer
     local PlaceId = game.PlaceId
+
+    local DISCORD_LINK = "https://discord.gg/get-ravine"
 
     local RavineLoader = Instance.new("ScreenGui")
     RavineLoader.Name = "RavineLoader"
@@ -553,7 +555,8 @@ if getgenv().SCRIPT_KEY and getgenv().SCRIPT_KEY ~= "" then
     StatsLabel.TextSize = 12
     StatsLabel.Font = Enum.Font.Gotham
 
-    local FooterLabel = Instance.new("TextLabel", Header)
+    
+    local FooterLabel = Instance.new("TextButton", Header)
     FooterLabel.Size = UDim2.new(1, -40, 0, 15)
     FooterLabel.Position = UDim2.new(0, 20, 0, 118)
     FooterLabel.BackgroundTransparency = 1
@@ -562,6 +565,11 @@ if getgenv().SCRIPT_KEY and getgenv().SCRIPT_KEY ~= "" then
     FooterLabel.TextSize = 10
     FooterLabel.Font = Enum.Font.Gotham
     FooterLabel.TextXAlignment = Enum.TextXAlignment.Center
+    FooterLabel.MouseButton1Click:Connect(function()
+        if setclipboard then
+            setclipboard(DISCORD_LINK)
+        end
+    end)
 
     local ScriptsContainer = Instance.new("ScrollingFrame", Main)
     ScriptsContainer.Size = UDim2.new(1, -10, 1, -150)
@@ -654,7 +662,7 @@ if getgenv().SCRIPT_KEY and getgenv().SCRIPT_KEY ~= "" then
             PlaceIds = {130960021905304, 137378874406308},
             ScriptUrl = "https://api.jnkie.com/api/v1/luascripts/public/cffebf9fcf41cb050a6a9963ec213e7ae19527e1916f74442fa8678d991c465e/download"
         },
-	    {
+        {
             Name = "Ravine Rivals",
             Description = "Aimbot, Silent Aim, ESP, Speed Boost, Fly",
             Icon = "rbxassetid://128553373538203",
