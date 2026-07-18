@@ -670,6 +670,13 @@ if getgenv().SCRIPT_KEY and getgenv().SCRIPT_KEY ~= "" then
             ScriptUrl = "https://api.jnkie.com/api/v1/luascripts/public/3415417e9c64b305de708d3bdf8eff112790e2fd5ee6e7c16ea60d1a6b3a542c/download"
         },
         {
+            Name = "Ravine Knife Duels",
+            Description = "Silent Aim, ESP, Speed Boost, Fly",
+            Icon = "rbxassetid://128553373538203",
+            PlaceIds = "112731528776884",
+            ScriptUrl = "https://api.jnkie.com/api/v1/luascripts/public/5bc8904499d814099b79a28983b4ba0f3a0f9186a56f7f89d62a746428f39529/download"
+        },
+        {
             Name = "Ravine Chicken Farm",
             Description = "Auto Collect, Deposit, Upgrade, Merge, Lucky Blocks",
             Icon = "rbxassetid://128553373538203",
