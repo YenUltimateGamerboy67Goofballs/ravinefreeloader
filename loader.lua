@@ -677,6 +677,13 @@ if getgenv().SCRIPT_KEY and getgenv().SCRIPT_KEY ~= "" then
             ScriptUrl = "https://api.jnkie.com/api/v1/luascripts/public/5bc8904499d814099b79a28983b4ba0f3a0f9186a56f7f89d62a746428f39529/download"
         },
         {
+            Name = "Ravine Survive Zombie Arena",
+            Description = "Instant Kill All Zombies, Auto Farm, ESP, Speed Boost, Fly",
+            Icon = "rbxassetid://128553373538203",
+            PlaceIds = "any",
+            ScriptUrl = "https://api.jnkie.com/api/v1/luascripts/public/db4a580c5656bcba5ad3e441e491bb5160699b39c797b0ef629c179c59a01bf0/download"
+        },
+        {
             Name = "Ravine Chicken Farm",
             Description = "Auto Collect, Deposit, Upgrade, Merge, Lucky Blocks",
             Icon = "rbxassetid://128553373538203",
